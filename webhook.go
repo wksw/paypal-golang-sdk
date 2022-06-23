@@ -2,18 +2,19 @@ package paypal
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 )
 
 // VerifyWebhookSignatureRequest verify webhook signature request
 type VerifyWebhookSignatureRequest struct {
-	AuthAlgo         string `json:"auth_algo,omitempty"`
-	CertURL          string `json:"cert_url,omitempty"`
-	TransmissionID   string `json:"transmission_id,omitempty"`
-	TransmissionSig  string `json:"transmission_sig,omitempty"`
-	TransmissionTime string `json:"transmission_time,omitempty"`
-	WebhookID        string `json:"webhook_id,omitempty"`
-	Event            []byte `json:"webhook_event,omitempty"`
+	AuthAlgo         string          `json:"auth_algo,omitempty"`
+	CertURL          string          `json:"cert_url,omitempty"`
+	TransmissionID   string          `json:"transmission_id,omitempty"`
+	TransmissionSig  string          `json:"transmission_sig,omitempty"`
+	TransmissionTime string          `json:"transmission_time,omitempty"`
+	WebhookID        string          `json:"webhook_id,omitempty"`
+	Event            json.RawMessage `json:"webhook_event,omitempty"`
 }
 
 // VerifyWebhookSignature POST /v1/notifications/verify-webhook-signature
