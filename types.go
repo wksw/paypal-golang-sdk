@@ -1074,7 +1074,7 @@ type (
 
 	// VerifyWebhookResponse struct
 	VerifyWebhookResponse struct {
-		VerificationStatus string `json:"verification_status,omitempty"`
+		VerificationStatus VerificationStatus `json:"verification_status,omitempty"`
 	}
 
 	WebhookEventTypesResponse struct {

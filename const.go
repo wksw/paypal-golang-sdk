@@ -28,6 +28,13 @@ const (
 	SubscriptionPlanStatusActive   SubscriptionPlanStatus = "ACTIVE"
 )
 
+type VerificationStatus string
+
+const (
+	VerificationStatusSuccess VerificationStatus = "SUCCESS"
+	VerificationStatusFailure VerificationStatus = "FAILURE"
+)
+
 type BillingPlanStatus string
 
 const (
