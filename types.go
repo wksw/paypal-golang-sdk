@@ -187,21 +187,30 @@ type (
 	}
 
 	// ApplicationContext struct
-	//Doc: https://developer.paypal.com/docs/api/subscriptions/v1/#definition-application_context
+	// Doc: https://developer.paypal.com/docs/api/subscriptions/v1/#definition-application_context
 	ApplicationContext struct {
 		BrandName          string             `json:"brand_name,omitempty"`
 		Locale             string             `json:"locale,omitempty"`
 		ShippingPreference ShippingPreference `json:"shipping_preference,omitempty"`
 		UserAction         UserAction         `json:"user_action,omitempty"`
 		PaymentMethod      PaymentMethod      `json:"payment_method,omitempty"`
-		//LandingPage        string `json:"landing_page,omitempty"` // not found in documentation
-		ReturnURL string `json:"return_url,omitempty"`
-		CancelURL string `json:"cancel_url,omitempty"`
+		LandingPage        LandingPage        `json:"landing_page,omitempty"`
+		ReturnURL          string             `json:"return_url,omitempty"`
+		CancelURL          string             `json:"cancel_url,omitempty"`
 	}
 
-	// Doc: https://developer.paypal.com/api/orders/v2/#definition-payment_method
+	// PaymentMethod Doc: https://developer.paypal.com/api/orders/v2/#definition-payment_method
 	PaymentMethod struct {
-		PayeePreferred         PayeePreferred         `json:"payee_preferred,omitempty"`
+		// PayeePreferred
+		PayeePreferred PayeePreferred `json:"payee_preferred,omitempty"`
+		// StandardEntryClassCode NACHA (the regulatory body governing the ACH network)
+		// requires that API callers (merchants, partners) obtain the consumer’s explicit
+		// authorization before initiating a transaction. To stay compliant,
+		// you’ll need to make sure that you retain a compliant authorization for each transaction
+		// that you originate to the ACH Network using this API.
+		// ACH transactions are categorized (using SEC codes)
+		// by how you capture authorization from the Receiver (the person whose bank account is being debited or credited).
+		// PayPal supports the following SEC codes.
 		StandardEntryClassCode StandardEntryClassCode `json:"standard_entry_class_code,omitempty"`
 	}
 
@@ -547,8 +556,12 @@ type (
 
 	// PurchaseUnitAmount struct
 	PurchaseUnitAmount struct {
-		Currency  string                       `json:"currency_code"`
-		Value     string                       `json:"value"`
+		Currency string `json:"currency_code"`
+		Value    string `json:"value"`
+		// The breakdown of the amount.
+		// Breakdown provides details such as total item amount,
+		// total tax amount, shipping, handling, insurance,
+		// and discounts, if any.
 		Breakdown *PurchaseUnitAmountBreakdown `json:"breakdown,omitempty"`
 	}
 

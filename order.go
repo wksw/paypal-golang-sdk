@@ -7,10 +7,11 @@ import (
 
 // CreateOrderRequest create order request body
 type CreateOrderRequest struct {
-	Intent             Intent                 `json:"intent"`
-	Payer              *CreateOrderPayer      `json:"payer,omitempty"`
-	PurchaseUnits      []*PurchaseUnitRequest `json:"purchase_units"`
-	ApplicationContext *ApplicationContext    `json:"application_context,omitempty"`
+	Intent                Intent                 `json:"intent"`
+	Payer                 *CreateOrderPayer      `json:"payer,omitempty"`
+	PurchaseUnits         []*PurchaseUnitRequest `json:"purchase_units"`
+	ProcessingInstruction ProcessingInstruction  `json:"processing_instruction"`
+	ApplicationContext    *ApplicationContext    `json:"application_context,omitempty"`
 }
 
 // CreateOrder  POST /v2/checkout/orders
