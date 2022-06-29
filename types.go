@@ -809,7 +809,7 @@ type (
 
 	// PaymentSource structure
 	PaymentSource struct {
-		Card  *PaymentSourceCard  `json:"card,omitempty"`
+		// The tokenized payment source to fund a payment.
 		Token *PaymentSourceToken `json:"token,omitempty"`
 	}
 
@@ -837,6 +837,7 @@ type (
 
 	// PaymentSourceToken structure
 	PaymentSourceToken struct {
+		// The PayPal-generated ID for the token.
 		ID   string `json:"id"`
 		Type string `json:"type"`
 	}
